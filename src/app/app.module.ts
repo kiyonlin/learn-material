@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedMaterialModule } from './shared-material/shared-material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SharedMaterialModule } from './shared-material/shared-material.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     // SharedMaterialModule 一定要放在 BrowserModule之后
     SharedMaterialModule
