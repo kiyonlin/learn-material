@@ -1,13 +1,50 @@
-<button mat-raised-button color="primary">
-  <mat-icon>person</mat-icon>
-  Hello World！
-</button>
+<mat-button-toggle-group #formatAlignGroup="matButtonToggleGroup">
+    <!-- button toogle所代表的值 -->
+    <mat-button-toggle value="left">
+        <mat-icon>format_align_left</mat-icon>
+    </mat-button-toggle>
+    <!-- 預設被選取 -->
+    <mat-button-toggle value="center" checked="true">
+        <mat-icon>format_align_center</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="right">
+        <mat-icon>format_align_right</mat-icon>
+    </mat-button-toggle>
+    <!-- 不允許選擇的button toggle -->
+    <mat-button-toggle value="justify" disabled>
+        <mat-icon>format_align_justify</mat-icon>
+    </mat-button-toggle>
+</mat-button-toggle-group>
+<div>對齊方式為：{{ formatAlignGroup.value }}</div>
 
-<div>
-    <!-- 就是<i class="fa fa-thumbs-up">的概念 -->
-    <mat-icon fontSet="fontawesome" fontIcon="fa-thumbs-up"></mat-icon>
-    <mat-icon fontSet="fontawesome" fontIcon="fa-thumbs-up" color="primary"></mat-icon>
-    <mat-icon fontSet="fontawesome" fontIcon="fa-thumbs-up" color="accent"></mat-icon>
-    <mat-icon fontSet="fontawesome" fontIcon="fa-thumbs-up" color="warn"></mat-icon>
-    <mat-icon fontSet="fontawesome" fontIcon="fa-heart" color="warn"></mat-icon>
-</div>
+<!-- 加上multiple，則裡面的mat-buttong-toggle可以複選 -->
+<!-- 加上vertical="true", 改變排列方式 -->
+<mat-button-toggle-group multiple vertical="true">
+    <mat-button-toggle value="bold" #buttonToggleBold>
+        <mat-icon>format_bold</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="italic" checked="true" #buttonToggleItalic>
+        <mat-icon>format_italic</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="underlined" checked="true" #buttonToggleUnderlined>
+        <mat-icon>format_underlined</mat-icon>
+    </mat-button-toggle>
+</mat-button-toggle-group>
+<div>粗體：{{ buttonToggleBold.checked }}、斜體：{{ buttonToggleItalic.checked
+    }}、底線：{{ buttonToggleUnderlined.checked }}</div>
+
+
+<div class="demo-ripple-container" mat-ripple></div>
+
+<button mat-raised-button (click)="triggerRipple()">觸發漣漪效果</button>
+<button mat-raised-button (click)="clearRipple()">清除漣漪效果</button>
+
+<!-- matRippleCentered：true代表不管滑鼠在元件上的哪裡點下去，都會從中心點開始產生漣漪。
+matRippleDisabled：true代表取消元件上的漣漪效果。
+matRippleUnbounded：true代表漣漪的效果擴大後會超過元件之外。
+matRippleRadius：漣漪產生的大小，數值越大大表大小越大。
+matRippleCol：漣漪的顏色。
+matRippleSpeedFactor：漣漪擴散的速度，數值越大速度越快 -->
+<div class="demo-ripple-container" mat-ripple [matRippleCentered]="false"
+    [matRippleDisabled]="false" [matRippleUnbounded]="false" [matRippleRadius]="100"
+    [matRippleColor]="'pink'" [matRippleSpeedFactor]="0.5"></div>

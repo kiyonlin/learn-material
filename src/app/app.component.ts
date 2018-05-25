@@ -1,18 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { MatIconRegistry } from '@angular/material';
+import { MatRipple } from '@angular/material';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'app';
+export class AppComponent {
 
-  constructor(private matIconRegistry: MatIconRegistry) { }
+  @ViewChild(MatRipple) ripple: MatRipple;
 
-  ngOnInit() {
-    this.matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
+  triggerRipple() {
+    const point1 = this.ripple.launch(0, 0, { color: 'pink', centered: true, persistent: true, radius: 50 });
+    const point2 = this.ripple.launch(0, 0, { color: 'yellow', centered: true, persistent: true, radius: 20 });
+
+    setTimeout(() => {
+      point1.fadeOut();
+      // point2.fadeOut();
+    }, 500);
+  }
+
+  clearRipple() {
+    this.ripple.fadeOutAll();
   }
 }
