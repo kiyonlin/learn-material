@@ -4,13 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedMaterialModule } from './shared-material/shared-material.module';
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    // SharedMaterialModule 一定要放在 BrowserModule之后
+    SharedMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
