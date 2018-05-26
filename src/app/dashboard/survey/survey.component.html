@@ -53,8 +53,11 @@
             </div>
             <div>
                 <mat-form-field>
-                    <input type="date" name="birthday" matInput placeholder="生日"
-                    />
+                    <input type="text" name="birthday" matInput placeholder="生日"
+                        [matDatepicker]="birthdayPicker" />
+                    <mat-datepicker-toggle [for]="birthdayPicker" matSuffix></mat-datepicker-toggle>
+                    <!-- touchUi="true" 适用于移动端 -->
+                    <mat-datepicker #birthdayPicker></mat-datepicker>
                 </mat-form-field>
             </div>
             <div>

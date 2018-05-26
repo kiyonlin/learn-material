@@ -3,10 +3,24 @@ import { CommonModule } from '@angular/common';
 
 import {
   MatButtonModule, MatIconModule, MatButtonToggleModule, MatRippleModule, MatSidenavModule, MatToolbarModule,
-  MatListModule, MatMenuModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule
+  MatListModule, MatMenuModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule,
+  MatDatepickerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS
 } from '@angular/material';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatMomentDateModule } from '@angular/material-moment-adapter'
+
+export const CN_FORMATS = {
+  parse: {
+    dateInput: 'YYYY/MM/DD'
+  },
+  display: {
+    dateInput: 'YYYY/MM/DD',
+    monthYearLabel: 'YYYY MMM',
+    dateA11yLabel: 'YYYY/MM/DD',
+    monthYearA11yLabel: 'YYYY MMM'
+  }
+};
 
 @NgModule({
   imports: [
@@ -15,8 +29,12 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   exports: [
     MatButtonModule, MatIconModule, MatButtonToggleModule, MatRippleModule, MatSidenavModule, MatToolbarModule,
     MatListModule, MatMenuModule, MatStepperModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
-    FormsModule, MatAutocompleteModule
+    FormsModule, MatAutocompleteModule, MatDatepickerModule, MatMomentDateModule
   ],
-  declarations: []
+  declarations: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'zh-CN' },
+    { provide: MAT_DATE_FORMATS, useValue: CN_FORMATS }
+  ]
 })
 export class SharedMaterialModule { }
