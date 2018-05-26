@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {
   MatButtonModule, MatIconModule, MatButtonToggleModule, MatRippleModule, MatSidenavModule, MatToolbarModule,
   MatListModule, MatMenuModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule,
-  MatDatepickerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS
+  MatDatepickerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatSelectModule
 } from '@angular/material';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -29,7 +29,7 @@ export const CN_FORMATS = {
   exports: [
     MatButtonModule, MatIconModule, MatButtonToggleModule, MatRippleModule, MatSidenavModule, MatToolbarModule,
     MatListModule, MatMenuModule, MatStepperModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
-    FormsModule, MatAutocompleteModule, MatDatepickerModule, MatMomentDateModule
+    FormsModule, MatAutocompleteModule, MatDatepickerModule, MatMomentDateModule, MatSelectModule
   ],
   declarations: [],
   providers: [
