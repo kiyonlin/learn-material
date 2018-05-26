@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import {
   MatButtonModule, MatIconModule, MatButtonToggleModule, MatRippleModule, MatSidenavModule, MatToolbarModule,
-  MatListModule, MatMenuModule
+  MatListModule, MatMenuModule, MatStepperModule, MatFormFieldModule, MatInputModule
 } from '@angular/material';
+
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -12,7 +14,7 @@ import {
   ],
   exports: [
     MatButtonModule, MatIconModule, MatButtonToggleModule, MatRippleModule, MatSidenavModule, MatToolbarModule,
-    MatListModule, MatMenuModule
+    MatListModule, MatMenuModule, MatStepperModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, FormsModule
   ],
   declarations: []
 })
