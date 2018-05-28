@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -11,6 +11,9 @@ import { HttpClient } from '@angular/common/http';
 export class BlogComponent implements OnInit {
   posts$: Observable<any>;
 
+  progress = 60;
+  strokeWidth = 5;
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -18,7 +21,8 @@ export class BlogComponent implements OnInit {
       .pipe(
         map(posts => {
           return posts.slice(0, 6);
-        })
+        }),
+        delay(1500)
       );
   }
 

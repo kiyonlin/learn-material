@@ -35,3 +35,9 @@ mat-card:focus {
     background: lightblue;
     width: 95%;
 }
+
+.blog-sidebar-content {
+    align-self: flex-start;
+    padding-top: 100px;
+    width: 95%;
+}
