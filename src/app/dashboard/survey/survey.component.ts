@@ -47,6 +47,23 @@ export class SurveyComponent implements OnInit {
 
   indeterminateSelectedPayFor: boolean;
 
+  get selectedColorRed() {
+    return this.surveyForm.get('otherQuestions').get('favoriteColorRed').value;
+  }
+
+  get selectedColorGreen() {
+    return this.surveyForm.get('otherQuestions').get('favoriteColorGreen').value;
+  }
+
+  get selectedColorBlue() {
+    return this.surveyForm.get('otherQuestions').get('favoriteColorBlue').value;
+  }
+
+  // 組合顏色樣式
+  get selectedColorStyle() {
+    return `rgb(${this.selectedColorRed}, ${this.selectedColorGreen}, ${this.selectedColorBlue})`;
+  }
+
   constructor(private httpClient: HttpClient) {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
@@ -67,6 +84,12 @@ export class SurveyComponent implements OnInit {
         subscribeAngular: new FormControl(false),
         subscribeAngularMaterial: new FormControl(false),
         subscribeNgRx: new FormControl(true),
+      }),
+      otherQuestions: new FormGroup({
+        favoriteColorRed: new FormControl(0),
+        favoriteColorGreen: new FormControl(0),
+        favoriteColorBlue: new FormControl(0),
+        surveyScore: new FormControl(5)
       })
     });
   }
