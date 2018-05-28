@@ -5,10 +5,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainComponent } from './main/main.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SurveyComponent } from './survey/survey.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   imports: [CommonModule, DashboardRoutingModule, SharedMaterialModule],
-  declarations: [DashboardComponent, MainComponent, SurveyComponent],
+  declarations: [DashboardComponent, MainComponent, SurveyComponent, BlogComponent],
   exports: [DashboardComponent]
 })
 export class DashboardModule { }
