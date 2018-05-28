@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { MatStepperIntl, ErrorStateMatcher, MatDatepickerInputEvent } from '@angular/material';
+import {
+  MatStepperIntl, ErrorStateMatcher, MatDatepickerInputEvent, MatCheckboxChange,
+} from '@angular/material';
 import { Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
@@ -23,7 +25,10 @@ export class EarlyErrorStateMatcher implements ErrorStateMatcher {
   selector: 'app-survey',
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css'],
-  providers: [{ provide: MatStepperIntl, useClass: TwStepperIntl }, { provide: ErrorStateMatcher, useClass: EarlyErrorStateMatcher }]
+  providers: [
+    { provide: MatStepperIntl, useClass: TwStepperIntl },
+    { provide: ErrorStateMatcher, useClass: EarlyErrorStateMatcher }
+  ]
 })
 export class SurveyComponent implements OnInit {
   startDate = moment('1999-1-10');
@@ -40,6 +45,8 @@ export class SurveyComponent implements OnInit {
   interestList: any[];
   nestInterestList: any[];
 
+  indeterminateSelectedPayFor: boolean;
+
   constructor(private httpClient: HttpClient) {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
@@ -49,6 +56,17 @@ export class SurveyComponent implements OnInit {
         majorTech: new FormControl(''),
         birthday: new FormControl({ value: '', disabled: true }),
         interest: new FormControl(null)
+      }),
+      mainQuestions: new FormGroup({
+        payForAll: new FormControl(false),
+        payForBook: new FormControl(false),
+        payForMusic: new FormControl(false),
+        payForMovie: new FormControl(true),
+        angularLikeScore: new FormControl(5),
+        angularMaterialLikeScore: new FormControl(5),
+        subscribeAngular: new FormControl(false),
+        subscribeAngularMaterial: new FormControl(false),
+        subscribeNgRx: new FormControl(true),
       })
     });
   }
@@ -125,6 +143,37 @@ export class SurveyComponent implements OnInit {
         ]
       }
     ];
+
+    this._setSelectAllState();
+  }
+
+  checkAllChange($event: MatCheckboxChange) {
+    this.surveyForm
+      .get('mainQuestions')
+      .get('payForBook')
+      .setValue($event.checked);
+    this.surveyForm
+      .get('mainQuestions')
+      .get('payForMusic')
+      .setValue($event.checked);
+    this.surveyForm
+      .get('mainQuestions')
+      .get('payForMovie')
+      .setValue($event.checked);
+    this._setSelectAllState();
+  }
+
+  payForChange() {
+    this._setSelectAllState();
+  }
+
+  private _setSelectAllState() {
+    const payForBook = this.surveyForm.get('mainQuestions').get('payForBook').value;
+    const payForMusic = this.surveyForm.get('mainQuestions').get('payForMusic').value;
+    const payForMovie = this.surveyForm.get('mainQuestions').get('payForMovie').value;
+    const count = (payForBook ? 1 : 0) + (payForMusic ? 1 : 0) + (payForMovie ? 1 : 0);
+    this.surveyForm.get('mainQuestions').get('payForAll').setValue(count === 3);
+    this.indeterminateSelectedPayFor = count > 0 && count < 3;
   }
 
   highlightFiltered(countryName: string) {
