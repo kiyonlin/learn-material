@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {
   MatButtonModule, MatIconModule, MatButtonToggleModule, MatRippleModule, MatSidenavModule, MatToolbarModule,
   MatListModule, MatMenuModule, MatStepperModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule,
-  MatDatepickerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatSelectModule
+  MatDatepickerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatSelectModule, MAT_LABEL_GLOBAL_OPTIONS
 } from '@angular/material';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -34,7 +34,8 @@ export const CN_FORMATS = {
   declarations: [],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'zh-CN' },
-    { provide: MAT_DATE_FORMATS, useValue: CN_FORMATS }
+    { provide: MAT_DATE_FORMATS, useValue: CN_FORMATS },
+    // { provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: { float: 'always' } }
   ]
 })
 export class SharedMaterialModule { }
