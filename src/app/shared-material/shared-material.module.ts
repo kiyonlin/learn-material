@@ -8,7 +8,8 @@ import {
   MatRadioModule,
   MatSlideToggleModule,
   MatSliderModule,
-  MatGridListModule
+  MatGridListModule,
+  MatCardModule
 } from '@angular/material';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -34,7 +35,7 @@ export const CN_FORMATS = {
     MatButtonModule, MatIconModule, MatButtonToggleModule, MatRippleModule, MatSidenavModule, MatToolbarModule,
     MatListModule, MatMenuModule, MatStepperModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
     FormsModule, MatAutocompleteModule, MatDatepickerModule, MatMomentDateModule, MatSelectModule, MatCheckboxModule,
-    MatRadioModule, MatSlideToggleModule, MatSliderModule, MatGridListModule
+    MatRadioModule, MatSlideToggleModule, MatSliderModule, MatGridListModule, MatCardModule
   ],
   declarations: [],
   providers: [

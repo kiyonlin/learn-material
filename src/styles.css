@@ -20,3 +20,18 @@ body {
 .toolbar-seprator {
     flex: 1 1 auto;
 }
+
+.post-tile {
+    align-self: flex-start;
+    width: 100%;
+    margin: 5px;
+}
+
+.post-tile .mat-card-image {
+    max-height: 300px;
+}
+
+mat-card:focus {
+    background: lightblue;
+    width: 95%;
+}
