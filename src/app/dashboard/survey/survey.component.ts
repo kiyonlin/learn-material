@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, AfterViewInit, QueryList, HostListener } from '@angular/core';
 import {
   MatStepperIntl, ErrorStateMatcher, MatDatepickerInputEvent, MatCheckboxChange,
 } from '@angular/material';
@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
 import * as moment from 'moment';
+import { SurveyInputDirective } from './survey-input.directive';
+import { FocusKeyManager } from '@angular/cdk/a11y';
+import { UP_ARROW, DOWN_ARROW } from '@angular/cdk/keycodes';
 
 export class TwStepperIntl extends MatStepperIntl {
   optionalLabel = '非必填';
@@ -30,7 +33,7 @@ export class EarlyErrorStateMatcher implements ErrorStateMatcher {
     { provide: ErrorStateMatcher, useClass: EarlyErrorStateMatcher }
   ]
 })
-export class SurveyComponent implements OnInit {
+export class SurveyComponent implements OnInit, AfterViewInit {
   startDate = moment('1999-1-10');
   minDate = moment('1999-1-5');
   maxDate = moment('1999-1-15');
@@ -46,6 +49,19 @@ export class SurveyComponent implements OnInit {
   nestInterestList: any[];
 
   indeterminateSelectedPayFor: boolean;
+
+  @ViewChildren(SurveyInputDirective) surveyInputs: QueryList<SurveyInputDirective>;
+  keyManager: FocusKeyManager<SurveyInputDirective>;
+
+  @HostListener('keydown', ['$event'])
+  keydown($event: KeyboardEvent) {
+    // 監聽鍵盤事件並依照按鍵設定按鈕focus狀態
+    if ($event.keyCode === UP_ARROW) {
+      this.keyManager.setPreviousItemActive();
+    } else if ($event.keyCode === DOWN_ARROW) {
+      this.keyManager.setNextItemActive();
+    }
+  }
 
   get selectedColorRed() {
     return this.surveyForm.get('otherQuestions').get('favoriteColorRed').value;
@@ -223,5 +239,11 @@ export class SurveyComponent implements OnInit {
 
   logDateChange($event: MatDatepickerInputEvent<moment.Moment>) {
     console.log($event);
+  }
+
+  ngAfterViewInit() {
+    this.keyManager = new FocusKeyManager(this.surveyInputs).withWrap();
+    this.keyManager.setActiveItem(0);
+    console.log('survey inputs focus', this.surveyInputs);
   }
 }

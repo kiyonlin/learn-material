@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'inbox', pathMatch: 'full' },
+      { path: '', redirectTo: 'main', pathMatch: 'full' },
       { path: 'main', component: MainComponent },
       { path: 'survey', component: SurveyComponent },
       { path: 'blog', component: BlogComponent },

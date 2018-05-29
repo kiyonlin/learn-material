@@ -163,3 +163,14 @@
 
 <button mat-raised-button (click)="triggerRipple()">觸發漣漪效果</button>
 <button mat-raised-button (click)="clearRipple()">清除漣漪效果</button>
+
+
+<h2>FocusTrap</h2>
+<button (click)="displayFocusTrap = !displayFocusTrap">顯示輸入項</button>
+<input value="cdkTrapFocus外的Input">
+<div cdkTrapFocus *ngIf="displayFocusTrap" cdkTrapFocusAutoCapture="true">
+    <input value="1" cdkFocusInitial>
+    <input value="2" cdkFocusRegionStart>
+    <input value="3">
+    <input value="4" cdkFocusRegionEnd>
+</div>

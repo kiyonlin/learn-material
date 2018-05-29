@@ -11,10 +11,11 @@ import { AddPostConfirmDialogComponent } from './blog/add-post-confirm-dialog/ad
 import { AfterPostNotifyComponent } from './blog/after-post-notify/after-post-notify.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { EmailListComponent } from './inbox/email-list/email-list.component';
+import { SurveyInputDirective } from './survey/survey-input.directive';
 
 @NgModule({
   imports: [CommonModule, DashboardRoutingModule, SharedMaterialModule],
-  declarations: [DashboardComponent, MainComponent, SurveyComponent, BlogComponent, AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent, InboxComponent, EmailListComponent],
+  declarations: [DashboardComponent, MainComponent, SurveyComponent, BlogComponent, AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent, InboxComponent, EmailListComponent, SurveyInputDirective],
   exports: [DashboardComponent],
   entryComponents: [AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent]
 })
