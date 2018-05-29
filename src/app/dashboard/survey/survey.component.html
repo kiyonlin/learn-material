@@ -65,7 +65,7 @@
                         [matDatepicker]="birthdayPicker" />
                     <mat-datepicker-toggle [for]="birthdayPicker" matSuffix></mat-datepicker-toggle>
                     <!-- touchUi="true" 适用于移动端 -->
-                    <mat-datepicker #birthdayPicker></mat-datepicker>
+                    <mat-datepicker #birthdayPicker [touchUi]="isHandset$ | async"></mat-datepicker>
                 </mat-form-field>
             </div>
             <div>

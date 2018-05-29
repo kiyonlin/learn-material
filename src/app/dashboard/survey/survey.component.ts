@@ -11,6 +11,7 @@ import * as moment from 'moment';
 import { SurveyInputDirective } from './survey-input.directive';
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import { UP_ARROW, DOWN_ARROW } from '@angular/cdk/keycodes';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 export class TwStepperIntl extends MatStepperIntl {
   optionalLabel = '非必填';
@@ -63,6 +64,8 @@ export class SurveyComponent implements OnInit, AfterViewInit {
     }
   }
 
+  isHandset$: Observable<boolean>;
+
   get selectedColorRed() {
     return this.surveyForm.get('otherQuestions').get('favoriteColorRed').value;
   }
@@ -80,7 +83,7 @@ export class SurveyComponent implements OnInit, AfterViewInit {
     return `rgb(${this.selectedColorRed}, ${this.selectedColorGreen}, ${this.selectedColorBlue})`;
   }
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private breakpointObserver: BreakpointObserver) {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
         name: new FormControl('', Validators.required),
@@ -184,6 +187,9 @@ export class SurveyComponent implements OnInit, AfterViewInit {
     ];
 
     this._setSelectAllState();
+
+    this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
+      .pipe(map(match => match.matches));
   }
 
   checkAllChange($event: MatCheckboxChange) {

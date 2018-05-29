@@ -16,6 +16,8 @@ import {
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatMomentDateModule } from '@angular/material-moment-adapter'
 import { A11yModule } from '@angular/cdk/a11y';
+import { BidiModule } from '@angular/cdk/bidi';
+import { LayoutModule } from '@angular/cdk/layout';
 
 export const CN_FORMATS = {
   parse: {
@@ -39,7 +41,7 @@ export const CN_FORMATS = {
     FormsModule, MatAutocompleteModule, MatDatepickerModule, MatMomentDateModule, MatSelectModule, MatCheckboxModule,
     MatRadioModule, MatSlideToggleModule, MatSliderModule, MatGridListModule, MatCardModule, MatProgressBarModule,
     MatProgressSpinnerModule, MatDialogModule, MatChipsModule, MatTooltipModule, MatSnackBarModule, MatExpansionModule,
-    MatTabsModule, MatTableModule, MatSortModule, MatPaginatorModule, A11yModule
+    MatTabsModule, MatTableModule, MatSortModule, MatPaginatorModule, A11yModule, BidiModule, LayoutModule
   ],
   declarations: [],
   providers: [

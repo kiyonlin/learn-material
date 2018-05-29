@@ -7,6 +7,8 @@
 
     <!-- 在這之後的都會被推到右邊去 -->
     <span class="toolbar-seprator"></span>
+    <button mat-button *ngIf="bidiMode === 'ltr'" (click)="bidiMode = 'rtl'">LTR</button>
+    <button mat-button *ngIf="bidiMode === 'rtl'" (click)="bidiMode = 'ltr'">RTL</button>
 
     <button mat-icon-button [matMenuTriggerFor]="messageMenu" #menuTrigger="matMenuTrigger">
         <mat-icon>message</mat-icon>
@@ -90,7 +92,8 @@
         <div>我是右邊選單</div>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content [dir]="bidiMode" (dirChange)="logDirChange($event)">
+        <app-bidi-test></app-bidi-test>
         <!-- <button mat-raised-button [matMenuTriggerFor]="positionMenu">巢狀選單demo</button>
         <mat-menu #positionMenu="matMenu">
             <button mat-menu-item [matMenuTriggerFor]="subMenu1">訊息1</button>

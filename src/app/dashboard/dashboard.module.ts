@@ -12,10 +12,11 @@ import { AfterPostNotifyComponent } from './blog/after-post-notify/after-post-no
 import { InboxComponent } from './inbox/inbox.component';
 import { EmailListComponent } from './inbox/email-list/email-list.component';
 import { SurveyInputDirective } from './survey/survey-input.directive';
+import { BidiTestComponent } from './main/bidi-test/bidi-test.component';
 
 @NgModule({
   imports: [CommonModule, DashboardRoutingModule, SharedMaterialModule],
-  declarations: [DashboardComponent, MainComponent, SurveyComponent, BlogComponent, AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent, InboxComponent, EmailListComponent, SurveyInputDirective],
+  declarations: [DashboardComponent, MainComponent, SurveyComponent, BlogComponent, AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent, InboxComponent, EmailListComponent, SurveyInputDirective, BidiTestComponent],
   exports: [DashboardComponent],
   entryComponents: [AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent]
 })
