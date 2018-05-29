@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material';
 
 @Component({
   selector: 'app-inbox',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent implements OnInit {
+  tabIndex = 1;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  tabFocusChange($event: MatTabChangeEvent) {
+    console.log(`focus變更，indx：${$event.index}`);
+  }
+
+  tabSelectedIndexChange($event: number) {
+    console.log(`selectedIndex變更，index：${$event}`);
+  }
+
+  tabSelectedTabChange($event: MatTabChangeEvent) {
+    console.log(`selectedTab變更，index：${$event.index}`);
+  }
 }

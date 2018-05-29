@@ -63,6 +63,36 @@
         </mat-accordion>
     </section>
     <section class="main">
-        Main
+        <button mat-button (click)="tabIndex = tabIndex - 1">上一頁</button>
+        <button mat-button (click)="tabIndex = tabIndex + 1">下一頁</button>
+        <p>目前的selectedIndex: {{ tabIndex }}</p>
+        <mat-tab-group [(selectedIndex)]="tabIndex" (focusChange)="tabFocusChange($event)"
+            (selectedIndexChange)="tabSelectedIndexChange($event)"
+            (selectedTabChange)="tabSelectedTabChange($event)" backgroundColor="primary"
+            color="accent">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>inbox</mat-icon>
+                    郵件列表
+                </ng-template>
+                郵件列表清單
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon>settings</mat-icon>
+                    系統設定
+                </ng-template>
+                系統設定表單
+            </mat-tab>
+            <mat-tab label="其他">
+                其他畫面
+            </mat-tab>
+            <mat-tab label="其他2" disabled="true">
+                其他畫面
+            </mat-tab>
+            <mat-tab label="其他3">
+                其他畫面
+            </mat-tab>
+        </mat-tab-group>
     </section>
 </div>
