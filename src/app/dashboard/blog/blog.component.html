@@ -19,33 +19,7 @@
             <h4>
                 發文進度
             </h4>
-            <mat-progress-bar [value]="progress"></mat-progress-bar>
-            <button mat-raised-button (click)="progress = progress - 10">-10</button>
-            <button mat-raised-button (click)="progress = progress + 10">+10</button>
-
-            <h4>Buffer Progress Bar</h4>
-            <mat-progress-bar mode="buffer" value="30" bufferValue="60"></mat-progress-bar>
-
-            <h4>indeterminate Progress Bar</h4>
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-
-            <h4>Query Progress Bar</h4>
-            <mat-progress-bar mode="query"></mat-progress-bar>
-
-
-            <h4>Progress Spinner</h4>
-            <mat-progress-spinner [value]="progress"></mat-progress-spinner>
-            <button mat-raised-button (click)="progress = progress - 10">-10</button>
-            <button mat-raised-button (click)="progress = progress + 10">+10</button>
-
-            <h4>Spinner Stroke Width</h4>
-            <mat-progress-spinner value="60" [strokeWidth]="strokeWidth"
-                mode="indeterminate"></mat-progress-spinner>
-            <button mat-raised-button (click)="strokeWidth = strokeWidth - 1">-1</button>
-            <button mat-raised-button (click)="strokeWidth = strokeWidth + 1">+1</button>            {{ strokeWidth }}
-
-            <h4>Very Small Spinner</h4>
-            <mat-spinner [strokeWidth]="1" [diameter]="30"></mat-spinner>
+            <button mat-raised-button color="primary" (click)="showAddPostDialog()">新增文章</button>
         </div>
     </mat-grid-tile>
 
