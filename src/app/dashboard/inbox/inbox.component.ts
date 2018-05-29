@@ -7,7 +7,7 @@ import { MatTabChangeEvent } from '@angular/material';
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent implements OnInit {
-  tabIndex = 1;
+  tabIndex = 0;
 
   constructor() { }
 
