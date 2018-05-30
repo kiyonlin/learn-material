@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Portal, CdkPortal, TemplatePortal, ComponentPortal, PortalInjector, DomPortalOutlet } from '@angular/cdk/portal';
 import { Portal4Component, PORTAL4_INJECT_DATA } from './portal4/portal4.component';
 import { DOCUMENT } from '@angular/common';
+import { Platform, getSupportedInputTypes } from '@angular/cdk/platform';
 
 @Component({
   selector: 'app-main',
@@ -21,6 +22,7 @@ export class MainComponent implements OnInit {
   displayFocusTrap = false;
   displayContent = 999;
 
+  supportInputTypes = getSupportedInputTypes();
 
   constructor(
     private matIconRegistry: MatIconRegistry,
@@ -29,7 +31,8 @@ export class MainComponent implements OnInit {
     private injector: Injector,
     @Inject(DOCUMENT) private document: any,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private appRef: ApplicationRef
+    private appRef: ApplicationRef,
+    public platform: Platform
   ) { }
 
   ngOnInit() {
