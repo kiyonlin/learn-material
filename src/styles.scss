@@ -3,6 +3,23 @@
 /* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
 
 // @import 'themes/custom-theme.scss';
+// mat-color 
+// @include mat-elevation(2);
+// panelClass .custom-dialog {
+//     .mat-dialog-container {
+//         padding: 0px;
+//     }
+// }
+// this.dialog.open(SomeDialogComponent, {
+//     panelClass: 'custom-dialog'
+// }
+// );
+// mat-core-theme()
+// angular cdk样式
+// @import "~@angular/cdk/_a11y.scss";
+// @import "~@angular/cdk/_overlay.scss";
+// @include cdk-a11y();
+// @include cdk-overlay();
 @import '~@angular/material/theming';
 @include mat-core();
 $custom-primary: mat-palette($mat-light-blue);
@@ -10,10 +27,13 @@ $custom-accent: mat-palette($mat-green);
 $custom-warn: mat-palette($mat-brown);
 $custom-theme: mat-dark-theme($custom-primary, $custom-accent, $custom-warn);
 .custom-theme-1 {
-    @include angular-material-theme($custom-theme);
+    // @include angular-material-theme($custom-theme);
+    @include mat-core-theme($custom-theme);
+    @include mat-button-theme($custom-theme);
+    @include mat-menu-theme($custom-theme);
 }
 
-$custom-primary-2: mat-palette($mat-teal);
+$custom-primary-2: mat-palette($mat-teal, 800);
 $custom-accent-2: mat-palette($mat-orange);
 $custom-warn-2: mat-palette($mat-red);
 $custom-theme-2: mat-light-theme($custom-primary-2, $custom-accent-2, $custom-warn-2);
