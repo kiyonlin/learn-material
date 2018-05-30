@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSidenav, MatDrawerToggleResult } from '@angular/material';
 import { Direction } from '@angular/cdk/bidi';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { OverlayContainer } from '@angular/cdk/overlay';
+import { OverlayContainer, ScrollDispatcher, CdkScrollable } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,9 +11,13 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 })
 export class DashboardComponent implements OnInit {
   bidiMode = 'ltr';
-  theme = 'custom-theme-1';
+  theme = 'custom-theme-2';
 
-  constructor(private breakpointObserver: BreakpointObserver, private overlayContainer: OverlayContainer) { }
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private overlayContainer: OverlayContainer,
+    private scrollDispatcher: ScrollDispatcher
+  ) { }
 
   ngOnInit() {
     // const isSmallScreen = this.breakpointObserver.isMatched('(max-width:599px)');
@@ -33,6 +37,12 @@ export class DashboardComponent implements OnInit {
     });
 
     this.overlayContainer.getContainerElement().classList.add(this.theme);
+
+    console.log(this.scrollDispatcher.scrollContainers);
+    this.scrollDispatcher.scrolled(1000).subscribe((scrollable: CdkScrollable) => {
+      console.log('發生scroll了，來源為：');
+      console.log(scrollable.getElementRef());
+    });
   }
 
   toggleSideNav(sideNav: MatSidenav) {

@@ -94,7 +94,8 @@
             <div>我是右邊選單</div>
         </mat-sidenav>
 
-        <mat-sidenav-content [dir]="bidiMode" (dirChange)="logDirChange($event)">
+        <mat-sidenav-content [dir]="bidiMode" (dirChange)="logDirChange($event)"
+            cdkScrollable>
             <app-bidi-test></app-bidi-test>
             <!-- <button mat-raised-button [matMenuTriggerFor]="positionMenu">巢狀選單demo</button>
         <mat-menu #positionMenu="matMenu">
