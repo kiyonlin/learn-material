@@ -20,6 +20,7 @@ import { BidiModule } from '@angular/cdk/bidi';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ObserversModule } from '@angular/cdk/observers';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+import { PortalModule } from '@angular/cdk/portal';
 
 export const CN_FORMATS = {
   parse: {
@@ -44,7 +45,7 @@ export const CN_FORMATS = {
     MatRadioModule, MatSlideToggleModule, MatSliderModule, MatGridListModule, MatCardModule, MatProgressBarModule,
     MatProgressSpinnerModule, MatDialogModule, MatChipsModule, MatTooltipModule, MatSnackBarModule, MatExpansionModule,
     MatTabsModule, MatTableModule, MatSortModule, MatPaginatorModule, A11yModule, BidiModule, LayoutModule, ObserversModule,
-    ScrollDispatchModule
+    ScrollDispatchModule, PortalModule
   ],
   declarations: [],
   providers: [

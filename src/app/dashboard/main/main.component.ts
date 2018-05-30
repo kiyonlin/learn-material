@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren, QueryList, TemplateRef, ViewContainerRef, ComponentFactoryResolver, Injector, Inject, ApplicationRef } from '@angular/core';
 import { MatIconRegistry, MatRipple } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Portal, CdkPortal, TemplatePortal, ComponentPortal, PortalInjector, DomPortalOutlet } from '@angular/cdk/portal';
+import { Portal4Component, PORTAL4_INJECT_DATA } from './portal4/portal4.component';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-main',
@@ -9,11 +12,25 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class MainComponent implements OnInit {
   @ViewChild(MatRipple) ripple: MatRipple;
+  @ViewChildren(CdkPortal) templatPortals: QueryList<CdkPortal>;
+  @ViewChild('template') template3: TemplateRef<any>;
+  name = 'wellwind';
+  domPortalOutlet: DomPortalOutlet;
+  currentPortal: Portal<any>;
 
   displayFocusTrap = false;
   displayContent = 999;
 
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) { }
+
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer,
+    private viewContainerRef: ViewContainerRef,
+    private injector: Injector,
+    @Inject(DOCUMENT) private document: any,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private appRef: ApplicationRef
+  ) { }
 
   ngOnInit() {
     this.matIconRegistry.addSvgIconInNamespace(
@@ -37,5 +54,42 @@ export class MainComponent implements OnInit {
 
   clearRipple() {
     this.ripple.fadeOutAll();
+  }
+
+  changePortal1() {
+    this.templatPortals.first.context = { nameInObject: this.name };
+    this.currentPortal = this.templatPortals.first;
+  }
+
+  changePortal2() {
+    this.currentPortal = this.templatPortals.last;
+  }
+
+  changePortal3() {
+    // 使用TemplatePortal把一般的TemplateRef包裝起來
+    this.currentPortal = new TemplatePortal(this.template3, this.viewContainerRef, { nameInObject: this.name });
+  }
+
+  changePortal4() {
+    this.currentPortal = new ComponentPortal(Portal4Component, undefined, this._createInjector());
+  }
+
+  private _createInjector(): PortalInjector {
+    const injectionTokens = new WeakMap();
+
+    injectionTokens.set(PORTAL4_INJECT_DATA, { nameInObject: this.name });
+
+    return new PortalInjector(this.injector, injectionTokens);
+  }
+
+  createOutletOutOfApp() {
+    const element = this.document.createElement('div');
+    element.innerHTML = '<br>我在&ltapp-root&gt;之外';
+    this.document.body.appendChild(element);
+    this.domPortalOutlet = new DomPortalOutlet(element, this.componentFactoryResolver, this.appRef, this.injector);
+  }
+
+  addTemplatePortal() {
+    this.domPortalOutlet.attachTemplatePortal(this.templatPortals.last);
   }
 }
