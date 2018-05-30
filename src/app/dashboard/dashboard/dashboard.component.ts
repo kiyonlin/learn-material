@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSidenav, MatDrawerToggleResult } from '@angular/material';
 import { Direction } from '@angular/cdk/bidi';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,8 +11,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 export class DashboardComponent implements OnInit {
   bidiMode = 'ltr';
+  theme = 'custom-theme-1';
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver, private overlayContainer: OverlayContainer) { }
 
   ngOnInit() {
     // const isSmallScreen = this.breakpointObserver.isMatched('(max-width:599px)');
@@ -29,6 +31,8 @@ export class DashboardComponent implements OnInit {
     this.breakpointObserver.observe('(orientation: landscape)').subscribe(result => {
       console.log(`landscape: ${result.matches}`);
     });
+
+    this.overlayContainer.getContainerElement().classList.add(this.theme);
   }
 
   toggleSideNav(sideNav: MatSidenav) {
@@ -47,5 +51,12 @@ export class DashboardComponent implements OnInit {
 
   logDirChange($event: Direction) {
     console.log(`dir被改變了 => ${$event}`);
+  }
+
+  toggleTheme() {
+    const originalTheme = this.theme;
+    this.theme = this.theme === 'custom-theme-1' ? 'custom-theme-2' : 'custom-theme-1';
+    this.overlayContainer.getContainerElement().classList.remove(originalTheme);
+    this.overlayContainer.getContainerElement().classList.add(this.theme);
   }
 }

@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+
+// @import 'themes/custom-theme.scss';
+@import '~@angular/material/theming';
+@include mat-core();
+$custom-primary: mat-palette($mat-light-blue);
+$custom-accent: mat-palette($mat-green);
+$custom-warn: mat-palette($mat-brown);
+$custom-theme: mat-dark-theme($custom-primary, $custom-accent, $custom-warn);
+.custom-theme-1 {
+    @include angular-material-theme($custom-theme);
+}
+
+$custom-primary-2: mat-palette($mat-teal);
+$custom-accent-2: mat-palette($mat-orange);
+$custom-warn-2: mat-palette($mat-red);
+$custom-theme-2: mat-light-theme($custom-primary-2, $custom-accent-2, $custom-warn-2);
+.custom-theme-2 {
+    @include angular-material-theme($custom-theme-2);
+}
+
+body {
+    margin: 0px;
+}
+
+.demo-app-header {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+
+.demo-app-container,
+.demo-app-sidenav {
+    position: absolute;
+    padding-top: 64px;
+}
+
+.toolbar-seprator {
+    flex: 1 1 auto;
+}
+
+.post-tile {
+    align-self: flex-start;
+    width: 100%;
+    margin: 5px;
+}
+
+.post-tile .mat-card-image {
+    max-height: 300px;
+}
+
+mat-card:focus {
+    background: lightblue;
+    width: 95%;
+}
+
+.blog-sidebar-content {
+    align-self: flex-start;
+    padding-top: 100px;
+    width: 95%;
+}
+
+.mat-basic-chip {
+    background: lime;
+    margin: 0 0 0 8px;
+    padding: 7px 12px;
+    border-radius: 5px;
+}
